@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+  - "8"
+dist: trusty
+env:
+  - NODE_ENV=prod
+cache:
+  directories:
+    - node_modules
+install:
+  - npm install
+  - nest build
+# script:
+  # - nohup npm run start &
+  # - sleep 3
+  # - npm run test
+  # - node dist/main
+deploy:
+  provider: heroku
+  api_key: 
+    secure: "3b151ec0-5798-4d27-b22f-e0a84a85e15b"
+  app: mindxtalk-api
