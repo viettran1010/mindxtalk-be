@@ -9,7 +9,7 @@ cache:
     - node_modules
 install:
   - npm install
-  - nest build
+  - CI=false nest build
 # script:
   # - nohup npm run start &
   # - sleep 3
