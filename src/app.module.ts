@@ -8,7 +8,7 @@ import { UsersModule} from './user/user.module'
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/midnx-talk'),
+    // MongooseModule.forRoot('mongodb://localhost/midnx-talk'),
     ConfigModule.forRoot(),
     AuthModule,
     UsersModule
