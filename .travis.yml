@@ -19,6 +19,5 @@ install:
   # - node dist/main
 deploy:
   provider: heroku
-  api_key: 
-    secure: "3b151ec0-5798-4d27-b22f-e0a84a85e15b"
+  api_key: "3b151ec0-5798-4d27-b22f-e0a84a85e15b"
   app: mindxtalk-api
