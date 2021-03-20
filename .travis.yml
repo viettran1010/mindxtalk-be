@@ -4,12 +4,13 @@ node_js:
 dist: trusty
 env:
   - NODE_ENV=prod
+  - CI=false
 cache:
   directories:
     - node_modules
 install:
   - npm install
-  - CI=false nest build
+  - nest build
 # script:
   # - nohup npm run start &
   # - sleep 3
