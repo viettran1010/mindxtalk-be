@@ -10,6 +10,7 @@ cache:
     - node_modules
 install:
   - npm install
+  - npm install nest
   - nest build
 # script:
   # - nohup npm run start &
