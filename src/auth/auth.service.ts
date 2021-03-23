@@ -1,6 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { UsersService } from 'src/user/user.service';
+import { UsersService } from 'src/users/users.service';
+import { CreateUserDto } from '../users/dto/create-user.dto';
 
 @Injectable()
 export class AuthService {
@@ -10,7 +11,7 @@ export class AuthService {
   ) {}
 
   async validateUser(username: string, pass: string): Promise<any> {
-    const user = await this.usersService.findOne(username);
+    const user = await this.usersService.findByUsername(username);
     if (user && user.password === pass) {
       const { password, ...result } = user;
       return result;
@@ -19,10 +20,20 @@ export class AuthService {
   }
 
   async login(user: any) {
-    const payload = { username: user.username, sub: user.userId };
+    const payload = { username: user.username, sub: user._id };
     return {
       access_token: this.jwtService.sign(payload),
-      test: "test"
     };
+  }
+
+  async register(createUserDto: CreateUserDto) {
+    if (await this.usersService.findByUsername(createUserDto.username)) {
+      throw new ConflictException(`Username: ${createUserDto.username} is existed.`);
+    }
+    if (await this.usersService.findByEmail(createUserDto.email)) {
+      throw new ConflictException(`Email: ${createUserDto.email} is existed.`);
+    }
+    const user = await this.usersService.create(createUserDto);
+    return this.login(user);
   }
 }
