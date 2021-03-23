@@ -7,12 +7,12 @@ import { CreateUserDto } from '../users/dto/create-user.dto';
 export class AuthController {
   constructor(private authService: AuthService) {}
   @UseGuards(LocalAuthGuard)
-  @Post('auth/login')
+  @Post('login')
   async login(@Request() req) {
     return this.authService.login(req.user);
   }
 
-  @Post('auth/register')
+  @Post('register')
   async register(@Body() createUserDto: CreateUserDto) {
     return this.authService.register(createUserDto);
   }
