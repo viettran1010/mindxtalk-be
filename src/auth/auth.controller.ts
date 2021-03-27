@@ -6,10 +6,10 @@ import { CreateUserDto } from '../users/dto/create-user.dto';
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
-  @UseGuards(LocalAuthGuard)
+  // @UseGuards(LocalAuthGuard)
   @Post('login')
   async login(@Request() req) {
-    return this.authService.login(req.user);
+    return this.authService.login(req.body);
   }
 
   @Post('register')
