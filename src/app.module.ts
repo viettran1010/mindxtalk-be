@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule} from './users/users.module'
+import { EventsModule } from './events/events.module';
 
 @Module({
   imports: [
@@ -19,7 +20,8 @@ import { UsersModule} from './users/users.module'
       isGlobal: true,
     }),
     AuthModule,
-    UsersModule
+    UsersModule,
+    EventsModule
   ],
   controllers: [AppController],
   providers: [AppService],
